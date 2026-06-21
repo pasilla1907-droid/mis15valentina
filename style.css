@@ -1,0 +1,159 @@
+body{
+margin:0;
+font-family:'Cinzel',serif;
+background:#0b1320;
+color:white;
+overflow-x:hidden;
+}
+
+#particles{
+position:fixed;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:1;
+}
+
+.particle{
+position:absolute;
+width:4px;
+height:4px;
+background:gold;
+border-radius:50%;
+animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+from{
+transform:translateY(100vh);
+opacity:0;
+}
+to{
+transform:translateY(-10vh);
+opacity:1;
+}
+}
+
+.envelope{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:radial-gradient(#20395f,#08101c);
+cursor:pointer;
+transition:1s;
+text-align:center;
+}
+
+.envelope:hover{
+transform:scale(1.03);
+}
+
+.seal{
+width:90px;
+height:90px;
+border-radius:50%;
+background:gold;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:35px;
+font-weight:bold;
+color:#222;
+box-shadow:0 0 25px gold;
+margin-bottom:20px;
+}
+
+.container{
+display:none;
+}
+
+.hero{
+height:100vh;
+background:url('assets/fondo.jpg') center center/cover;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+position:relative;
+text-align:center;
+}
+
+.overlay{
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.55);
+}
+
+.hero h1,
+.hero h2,
+.hero p{
+z-index:2;
+}
+
+.hero h1{
+font-size:50px;
+letter-spacing:3px;
+}
+
+.hero h2{
+font-family:'Great Vibes',cursive;
+font-size:65px;
+color:#d6b25e;
+margin:10px 0;
+}
+
+section{
+padding:80px 20px;
+text-align:center;
+}
+
+h2{
+color:#d6b25e;
+}
+
+#timer{
+font-size:35px;
+font-weight:bold;
+}
+
+.gallery{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+}
+
+.gallery img{
+width:250px;
+border-radius:15px;
+transition:.4s;
+}
+
+.gallery img:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px gold;
+}
+
+.btn{
+display:inline-block;
+padding:15px 35px;
+background:gold;
+color:black;
+text-decoration:none;
+border-radius:30px;
+font-weight:bold;
+transition:.3s;
+}
+
+.btn:hover{
+transform:scale(1.08);
+}
+
+footer{
+padding:60px 20px;
+text-align:center;
+background:#09111c;
+}
