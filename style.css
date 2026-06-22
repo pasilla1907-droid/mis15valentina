@@ -1,159 +1,308 @@
-body{
-margin:0;
-font-family:'Cinzel',serif;
-background:#0b1320;
-color:white;
-overflow-x:hidden;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-#particles{
-position:fixed;
-width:100%;
-height:100%;
-pointer-events:none;
-z-index:1;
+body, html {
+    height: 100%;
+    background-color: #050d1a;
+    font-family: 'Playfair Display', serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.particle{
-position:absolute;
-width:4px;
-height:4px;
-background:gold;
-border-radius:50%;
-animation:floatUp linear infinite;
+.pantalla-boda {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    height: 100vh;
+    background-color: #050d1a;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
 
-@keyframes floatUp{
-from{
-transform:translateY(100vh);
-opacity:0;
-}
-to{
-transform:translateY(-10vh);
-opacity:1;
-}
-}
-
-.envelope{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-background:radial-gradient(#20395f,#08101c);
-cursor:pointer;
-transition:1s;
-text-align:center;
+.destello-transicion {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, #ffffff 0%, rgba(255,255,255,0) 70%);
+    opacity: 0;
+    z-index: 99;
+    pointer-events: none;
+    animation: destellarCruce 16s infinite;
 }
 
-.envelope:hover{
-transform:scale(1.03);
+.escena {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation-duration: 16s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
 }
 
-.seal{
-width:90px;
-height:90px;
-border-radius:50%;
-background:gold;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:35px;
-font-weight:bold;
-color:#222;
-box-shadow:0 0 25px gold;
-margin-bottom:20px;
+#escena-pergamino {
+    background-color: #f3e1e3;
+    animation-name: secuenciaEscena1;
 }
 
-.container{
-display:none;
+.pergamino-img {
+    width: 85%;
+    position: relative;
+    text-align: center;
 }
 
-.hero{
-height:100vh;
-background:url('assets/fondo.jpg') center center/cover;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-position:relative;
-text-align:center;
+.pergamino-img img {
+    width: 100%;
 }
 
-.overlay{
-position:absolute;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.55);
+.contenido-pergamino {
+    position: absolute;
+    top: 25%; left: 10%; width: 80%;
+    text-align: center;
 }
 
-.hero h1,
-.hero h2,
-.hero p{
-z-index:2;
+.camafeo {
+    width: 50px !important;
+    margin-bottom: 10px;
 }
 
-.hero h1{
-font-size:50px;
-letter-spacing:3px;
+.texto-intro {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: #3a2a2b;
 }
 
-.hero h2{
-font-family:'Great Vibes',cursive;
-font-size:65px;
-color:#d6b25e;
-margin:10px 0;
+#escena-fachada {
+    background-image: url('https://i.postimg.cc/Xr9LT3sL/fachada.jpg');
+    animation-name: secuenciaEscena2;
 }
 
-section{
-padding:80px 20px;
-text-align:center;
+#escena-salon {
+    background-image: url('https://i.postimg.cc/PC1yBhS6/salon.jpg');
+    animation-name: secuenciaEscena3;
 }
 
-h2{
-color:#d6b25e;
+#escena-tarjeta {
+    background-color: #ffffff;
+    background-image: radial-gradient(rgba(181, 124, 130, 0.15) 1.5px, transparent 0);
+    background-size: 24px 24px;
+    animation-name: secuenciaEscena4;
+    padding: 30px 20px;
+    color: #3a2a2b;
+    justify-content: space-between;
 }
 
-#timer{
-font-size:35px;
-font-weight:bold;
+.whistledown-header {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    color: #b57c82;
+    border-bottom: 1px solid #c5a059;
+    padding-bottom: 5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
-.gallery{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:15px;
+.titulo-camafeo {
+    font-family: 'Monsieur La Doulaise', cursive;
+    font-size: 3.8rem;
+    color: #b57c82;
+    line-height: 0.8;
 }
 
-.gallery img{
-width:250px;
-border-radius:15px;
-transition:.4s;
+.nombre {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    letter-spacing: 3px;
 }
 
-.gallery img:hover{
-transform:scale(1.05);
-box-shadow:0 0 20px gold;
+.relato {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    font-style: italic;
 }
 
-.btn{
-display:inline-block;
-padding:15px 35px;
-background:gold;
-color:black;
-text-decoration:none;
-border-radius:30px;
-font-weight:bold;
-transition:.3s;
+.resaltado {
+    color: #b57c82;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: block;
+    margin: 5px 0;
+    font-family: 'Cinzel', serif;
 }
 
-.btn:hover{
-transform:scale(1.08);
+.contador {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
 }
 
-footer{
-padding:60px 20px;
-text-align:center;
-background:#09111c;
+.tiempo-bloque {
+    background: #fff8f8;
+    border: 1px solid #d4a3a9;
+    padding: 6px;
+    min-width: 60px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.tiempo-numero {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #b57c82;
+    display: block;
+    font-family: 'Cinzel', serif;
+}
+
+.tiempo-etiqueta {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+}
+
+.caja-botones {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+}
+
+.btn {
+    flex: 1;
+    max-width: 150px;
+    background: linear-gradient(135deg, #b57c82, #d4a3a9);
+    color: white;
+    font-family: 'Cinzel', serif;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-secundario {
+    background: transparent;
+    color: #b57c82;
+    border: 1px solid #b57c82;
+}
+
+.nota-protocolo {
+    font-size: 0.8rem;
+    border-top: 1px dashed #c5a059;
+    padding-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.music-control {
+    position: fixed;
+    top: 20px; right: 20px;
+    background: white; border: 1px solid #c5a059;
+    border-radius: 50%; width: 40px; height: 40px;
+    cursor: pointer; z-index: 100;
+    display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+@keyframes secuenciaEscena1 {
+    0%, 22% { opacity: 1; }
+    25%, 100% { opacity: 0; }
+}
+
+@keyframes secuenciaEscena2 {
+    0%, 22% { opacity: 0; }
+    25%, 47% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+@keyframes secuenciaEscena3 {
+    0%, 47% { opacity: 0; }
+    50%, 72% { opacity: 1; }
+    75%, 100% { opacity: 0; }
+}
+
+@keyframes secuenciaEscena4 {
+    0%, 72% { opacity: 0; pointer-events: none; }
+    75%, 100% { opacity: 1; pointer-events: auto; }
+}
+
+@keyframes destellarCruce {
+    23%, 48%, 73% { opacity: 0; }
+    24%, 49%, 74% { opacity: 1; }
+    25%, 50%, 75% { opacity: 0; }
+}
+
+/* DISEÑO DE LA PANTALLA DE BIENVENIDA (Rosa Pastel) */
+.pantalla-bienvenida {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #fce4e6;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease;
+}
+
+.bloque-bienvenida {
+    text-align: center;
+    color: #3a2a2b;
+    padding: 20px;
+    max-width: 400px;
+}
+
+.camafeo-intro {
+    width: 70px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(181, 124, 130, 0.2));
+}
+
+.titulo-intro {
+    font-family: 'Monsieur La Doulaise', cursive;
+    font-size: 4rem;
+    color: #b57c82;
+    margin-bottom: 10px;
+}
+
+.subtitulo-intro {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    color: #8c6267;
+}
+
+.btn-ingresar {
+    background: linear-gradient(135deg, #b57c82, #d4a3a9);
+    color: white;
+    border: none;
+    font-family: 'Cinzel', serif;
+    padding: 12px 30px;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(181, 124, 130, 0.4);
+    animation: pulsoBtn 2s infinite;
+}
+
+@keyframes pulsoBtn {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
