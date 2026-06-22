@@ -1,65 +1,46 @@
-const envelope = document.getElementById("envelope");
-const content = document.getElementById("content");
-const music = document.getElementById("music");
+// --- RELOJ CUENTA REGRESIVA ---
+const fechaEvento = new Date("Jan 30, 2027 16:00:00").getTime();
 
-envelope.addEventListener("click", () => {
+setInterval(function() {
+    const ahora = new Date().getTime();
+    const distancia = fechaEvento - ahora;
+    
+    const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+    const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+    
+    document.getElementById("dias").innerHTML = dias < 10 ? "0" + dias : dias;
+    document.getElementById("horas").innerHTML = horas < 10 ? "0" + horas : horas;
+    document.getElementById("minutos").innerHTML = minutos < 10 ? "0" + minutes : minutes;
+    document.getElementById("segundos").innerHTML = segundos < 10 ? "0" + segundos : segundos;
+}, 1000);
 
-```
-envelope.style.display = "none";
+// --- FUNCIÓN MÁGICA DE INGRESO CON MÚSICA ---
+function comenzarInvitacion() {
+    const bienvenida = document.getElementById("bienvenida");
+    const musica = document.getElementById("bg-music");
+    const btnMusica = document.getElementById("music-btn");
 
-content.style.display = "block";
+    bienvenida.style.opacity = "0";
+    setTimeout(() => {
+        bienvenida.style.display = "none";
+    }, 800);
 
-music.play().catch(() => {});
-```
-
-});
-
-const eventDate = new Date("January 30, 2027 16:00:00").getTime();
-
-setInterval(() => {
-
-```
-const now = new Date().getTime();
-
-const distance = eventDate - now;
-
-const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-
-const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-
-const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
-const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-document.getElementById("timer").innerHTML =
-    days + " días " +
-    hours + " h " +
-    minutes + " m " +
-    seconds + " s";
-```
-
-},1000);
-
-const particles = document.getElementById("particles");
-
-function createParticle(){
-
-```
-const particle = document.createElement("div");
-
-particle.classList.add("particle");
-
-particle.style.left = Math.random()*100 + "vw";
-
-particle.style.animationDuration = (Math.random()*5+5)+"s";
-
-particles.appendChild(particle);
-
-setTimeout(()=>{
-    particle.remove();
-},10000);
-```
-
+    musica.play().catch(error => console.log("Audio desbloqueado"));
+    btnMusica.innerHTML = "⏸️";
 }
 
-setInterval(createParticle,200);
+// --- CONTROL MANUAL DEL BOTÓN DE MÚSICA ---
+function toggleMusic() {
+    const musica = document.getElementById("bg-music");
+    const btn = document.getElementById("music-btn");
+    
+    if (musica.paused) {
+        musica.play();
+        btn.innerHTML = "⏸️";
+    } else {
+        musica.pause();
+        btn.innerHTML = "🎵";
+    }
+}
